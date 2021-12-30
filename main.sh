@@ -15,7 +15,7 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
 fi
 
 OPTIONS=c:st:
-LONGOPTS=consensus_engine:,setup,testnet:
+LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -47,6 +47,14 @@ while true; do
             testnet="$2"
             shift 2
             ;;
+        --nethermind_tag)
+            nethermind_tag="$2"
+            shift 2
+            ;;
+        --consensus_tag)
+            consensus_tag="$2"
+            shift 2
+            ;;
         --)
             shift
             break
@@ -65,7 +73,6 @@ fi
 
 if [ $s = y ]; then
     echo "Installing dependencies"
-    cd ~
     ./setup.sh
 fi
 

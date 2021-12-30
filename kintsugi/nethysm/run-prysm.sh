@@ -16,3 +16,5 @@ dotnet build Nethermind.sln -c Release
 cd ~/prysm
 git fetch && git pull
 bazel build //beacon-chain:beacon-chain
+
+# Use screen to manage multiple terminals https://linuxize.com/post/how-to-use-linux-screen/

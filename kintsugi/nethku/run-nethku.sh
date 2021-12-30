@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-OS_ARCH=$1
-
 #For bash errors
 set -eo pipefail
+
+OS=$1
+ARCH=$2
+consensus_tag=$3
+nethermind_tag=$4
 
 #update merge-testnets
 cd ~/merge-testnets
@@ -12,7 +15,7 @@ git fetch && git pull
 #update nethermind
 cd ~/nethermind
 git fetch && git pull
-docker buildx build --platform=$OS_ARCH -t nethermind_kintsugi .
+docker buildx build --platform="${OS}/${ARCH}" -t $nethermind_tag .
 
 #update teku
 cd ~/teku
@@ -52,7 +55,7 @@ EXPOSE 8008 5051 9000 9000/udp
 
 # specify default command
 ENTRYPOINT ["teku/build/install/teku/bin/teku"]' > ~/teku/Dockerfile
-docker build -t teku ~/teku/
+docker build -t $consensus_tag ~/teku/
 cd ~
 
 echo '
