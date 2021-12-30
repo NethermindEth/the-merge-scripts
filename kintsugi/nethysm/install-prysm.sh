@@ -11,6 +11,8 @@ if [ $OS = "linux" ] then # ubuntu/debian really, //TODO: freebsd, openbsd
     sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
     echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
     apt update && sudo apt install bazel
+    # install screen cmd
+    apt install screen
 elif [ $OS = "darwin" ] then
     # check if brew is installed
     out="$(which brew)" 

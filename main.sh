@@ -37,6 +37,8 @@ while true; do
     case "$1" in
         -c|--consensus_engine)
             consensus_engine="$2"
+            declare -l consensus_engine
+            consensus_engine=$consensus_engine
             shift 2
             ;;
         -s|--setup)
@@ -45,6 +47,8 @@ while true; do
             ;;
         -t|--testnet)
             testnet="$2"
+            declare -l testnet
+            testnet=$testnet
             shift 2
             ;;
         --nethermind_tag)
