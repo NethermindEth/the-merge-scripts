@@ -3,6 +3,7 @@
 #For bash errors
 set -eo pipefail
 
+cd ~
 #dependencies
 apt-get install apt-utils
 
