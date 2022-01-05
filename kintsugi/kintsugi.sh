@@ -8,8 +8,8 @@ consensus_tag=$2
 nethermind_tag=$3
 install=$4
 
-OS=uname -s | tr 'A-Z' 'a-z'
-ARCH=uname -m | tr 'A-Z' 'a-z'
+OS=$(uname -s | tr 'A-Z' 'a-z')
+ARCH=$(uname -m | tr 'A-Z' 'a-z')
 
 cd ~
 if [ $install = y ]; then

@@ -105,5 +105,3 @@ case $testnet in
         exit 5
         ;;
 esac
-
-echo "consensus_engine: $consensus_engine, nethermind_tag: $nethermind_tag, consensus_tag: $consensus_tag"

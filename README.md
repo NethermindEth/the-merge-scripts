@@ -16,7 +16,7 @@ Nethermind client in combination of the following consensus engines (without val
 
 ### How to run
 
-First clone this repository in Home directory. Consider running `find . -type d -exec chmod 774 {}` to make all scripts executables.
+First clone this repository in Home directory. Consider running `find . -type f -name '*.sh' -exec chmod +x {} \;` to make all scripts executables.
 
 > If you do not have nethermind, docker and docker-compose installed, then run `setup.sh` to install them. This also clone the repo https://github.com/eth2-clients/merge-testnets.git, which contains the configuration for the tesnet
 

@@ -5,7 +5,7 @@ set -eo pipefail
 
 cd ~
 #dependencies
-apt-get install apt-utils
+apt-get -y install apt-utils
 
 #docker
 sudo apt-get update
@@ -15,10 +15,10 @@ sudo apt-get install \
     curl \
     gnupg \
     lsb-release
-sudo apt install docker.io
+sudo apt -y install docker.io
 
 #essentials
-apt install build-essential
+apt install -y build-essential
 
 #docker-compose
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -44,7 +44,7 @@ sudo apt-get update; \
   sudo apt-get install -y dotnet-sdk-6.0
 
 #nethermind and dependencies
-sudo apt-get install libsnappy-dev libc6-dev libc6
+sudo apt-get install -y libsnappy-dev libc6-dev libc6
 
 #testnet config
 git clone https://github.com/eth2-clients/merge-testnets.git
