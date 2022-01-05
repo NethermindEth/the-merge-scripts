@@ -17,23 +17,23 @@ if [ $install = y ]; then
     case $consensus_engine in
         nimbus)
         echo "Installing nimbus"
-        kintsugi/nethbus/install-nimbus.sh
+        the-merge-scripts/kintsugi/nethbus/install-nimbus.sh
         ;;
         teku)
         echo "Installing teku"
-        kintsugi/nethku/install-teku.sh
+        the-merge-scripts/kintsugi/nethku/install-teku.sh
         ;;
         lighthouse)
         echo "Installing lighthouse"
-        kintsugi/nethouse/install-lighthouse.sh
+        the-merge-scripts/kintsugi/nethouse/install-lighthouse.sh
         ;;
         lodestar)
         echo "Installing lodestar"
-        kintsugi/nethstar/install-lodestar.sh
+        the-merge-scripts/kintsugi/nethstar/install-lodestar.sh
         ;;
         prysm)
         echo "Installing prysm"
-        kintsugi/nethysm/install-prysm.sh $OS
+        the-merge-scripts/kintsugi/nethysm/install-prysm.sh $OS
         ;;
         *)
         echo "Unknown consensus engine: $consensus_engine"
