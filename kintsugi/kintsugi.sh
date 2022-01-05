@@ -45,23 +45,23 @@ fi
 case $consensus_engine in
     nimbus)
         echo "Running nethbus"
-        kintsugi/nethbus/run-nethbus.sh $OS $ARCH $consensus_tag $nethermind_tag
+        ~/the-merge-scripts/kintsugi/nethbus/run-nethbus.sh $OS $ARCH $consensus_tag $nethermind_tag
         ;;
     teku)
         echo "Running nethku"
-        kintsugi/nethku/run-nethku.sh $OS $ARCH $consensus_tag $nethermind_tag
+         ~/the-merge-scripts/kintsugi/nethku/run-nethku.sh $OS $ARCH $consensus_tag $nethermind_tag
         ;;
     lighthouse)
         echo "Running nethouse"
-        kintsugi/nethouse/run-nethouse.sh $OS $ARCH $consensus_tag $nethermind_tag
+         ~/the-merge-scripts/kintsugi/nethouse/run-nethouse.sh $OS $ARCH $consensus_tag $nethermind_tag
         ;;
     lodestar)
         echo "Running nethstar"
-        kintsugi/nethstar/run-nethstar.sh
+         ~/the-merge-scripts/kintsugi/nethstar/run-nethstar.sh
         ;;
     prysm)
         echo "Running nethysm"
-        kintsugi/nethysm/run-nethysm.sh
+         ~/the-merge-scripts/kintsugi/nethysm/run-nethysm.sh
         ;;
     *)
         echo "Unknown consensus engine: $consensus_engine"
