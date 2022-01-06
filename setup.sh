@@ -47,4 +47,4 @@ sudo apt-get update; \
 sudo apt-get install -y libsnappy-dev libc6-dev libc6
 
 #testnet config
-git clone https://github.com/eth2-clients/merge-testnets.git
+git clone https://github.com/eth-clients/merge-testnets.git
