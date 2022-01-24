@@ -53,7 +53,7 @@ To leave the session press `Ctrl + A + D`.
 
 > For more information about screen command check https://linuxize.com/post/how-to-use-linux-screen/
 
-For Lodestar create a new session and go to the `lodestar/` folder and run:
+For Lodestar create a new session and go to the `lodestar` folder and run:
 
 ```
 ./lodestar beacon \
