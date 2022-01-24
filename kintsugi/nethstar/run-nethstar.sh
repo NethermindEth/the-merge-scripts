@@ -17,3 +17,5 @@ cd ~/lodestar
 git fetch && git pull
 yarn install --ignore-optional
 yarn run build
+
+# Use screen to manage multiple terminals https://linuxize.com/post/how-to-use-linux-screen/
