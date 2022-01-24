@@ -53,17 +53,9 @@ To leave the session press `Ctrl + A + D`.
 
 > For more information about screen command check https://linuxize.com/post/how-to-use-linux-screen/
 
-For Teku create a new session and go to the `teku/build/install/teku/bin` folder and run:
+For Lodestar create a new session and go to the `lodestar/` folder and run:
 
 ```
-./teku 
---data-path "datadir-teku" \
---network https://github.com/eth-clients/merge-testnets/raw/main/merge-devnet-2/config.yaml \
---initial-state https://github.com/eth-clients/merge-testnets/raw/main/merge-devnet-2/genesis.ssz \   
---Xee-endpoint http://localhost:8550 \
---p2p-discovery-bootnodes "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk" \
---log-destination console
-
 ./lodestar beacon \
 --rootDir="../lodestar-beacondata" \
 --paramsFile="./config.yaml" \
