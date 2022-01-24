@@ -39,7 +39,7 @@ where `<name>` is:
 - nethku <-> Teku
 - nethysm <-> Prysm
 
-To run Teku and Prysm you need two terminal sessions. `screen` is a useful command for this and is installed by default if you run the main script with the `-s` option. 
+To run Lodestar and Prysm you need two terminal sessions. `screen` is a useful command for this and is installed by default if you run the main script with the `-s` option. 
 
 > Use systemd services instead of screen for production systems
 
@@ -63,6 +63,17 @@ For Teku create a new session and go to the `teku/build/install/teku/bin` folder
 --Xee-endpoint http://localhost:8550 \
 --p2p-discovery-bootnodes "enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk" \
 --log-destination console
+
+./lodestar beacon \
+--rootDir="../lodestar-beacondata" \
+--paramsFile="./config.yaml" \
+--genesisStateFile="./genesis.ssz" \
+--network.discv5. bootEnrs="enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk" \
+--eth1.enabled=true \
+--execution.urls="http://127.0.0.1:8550" \
+--network.connectToDiscv5Bootnodes \
+--network.discv5.enabled=true \
+--logFile beacon.log
 ```
 
 For Prysm create a new session and go to the `prysm` folder and run:
