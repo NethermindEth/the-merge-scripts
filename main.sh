@@ -14,8 +14,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=c:st:
-LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:
+OPTIONS=c:st:b:
+LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:,branch:
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -30,7 +30,7 @@ fi
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
-nethermind_tag=- consensus_tag=- consensus_engine=- testnet=-
+nethermind_tag=- consensus_tag=- consensus_engine=- testnet=- branch=-
 s=n
 # now enjoy the options in order and nicely split until we see --
 while true; do
@@ -57,6 +57,10 @@ while true; do
             ;;
         --consensus_tag)
             consensus_tag="$2"
+            shift 2
+            ;;
+        -b|--branch)
+            branch="$2"
             shift 2
             ;;
         --)
@@ -94,6 +98,27 @@ if [ $consensus_tag = - ]; then
     consensus_tag="${consensus_engine}_beacon"
     echo "No consensus tag specified, using default: ${consensus_engine}_beacon"
 fi
+
+if [ $branch = - ]; then
+    branch="main"
+    echo "No branch tag specified, using default: main"
+fi
+
+## Change branch flag logic
+cd ~/nethermind/
+current_branch=$(git branch --show-current 2>/dev/null)
+echo "current branch: $current_branch"
+echo "current directory: $(pwd)"
+
+if [ "$current_branch" = "$branch" ]; then
+    echo "Already on $branch branch"
+    git reset --hard origin/$branch
+else
+    echo "Checking out $branch branch"
+    git checkout $branch
+    git reset --hard origin/$branch
+fi
+cd ~/the-merge-scripts/
 
 case $testnet in
     kintsugi)
