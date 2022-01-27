@@ -9,7 +9,7 @@ apt-get -y install apt-utils
 
 #docker
 sudo apt-get update
-sudo apt-get install \
+sudo apt-get install -y \
     apt-transport-https \
     ca-certificates \
     curl \
@@ -29,7 +29,6 @@ mkdir -p ~/.docker/cli-plugins
 FILE=~/.docker/cli-plugins/docker-buildx
 if ! [ -f "$FILE" ]; then
     wget https://github.com/docker/buildx/releases/download/v0.7.1/buildx-v0.7.1.linux-amd64 -P "$FILE"
-    mv "$FILE" ~/.docker/cli-plugins/docker-buildx
     chmod a+x ~/.docker/cli-plugins/docker-buildx
 fi 
 
