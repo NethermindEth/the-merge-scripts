@@ -14,8 +14,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=c:st:b:
-LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:,branch:
+OPTIONS=c:st:b:h
+LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:,branch:,help
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -63,6 +63,23 @@ while true; do
             branch="$2"
             shift 2
             ;;
+        -h|--help)
+            echo "Usage: ./main.sh [OPTIONS]
+            
+            Install and run validators with ease.
+            
+            Required Option:
+            -c, --consensus_engine    Chosen consensus engine to use.
+                                      Choices: lighthouse, lodestar, nimbus, prysm, teku
+            Optional:
+            -s, --setup               Installs required dependencies for chosen consensus_engine
+            -t, --testnet             Choose which testnet to deploy on. Default: kintsugi
+            --nethermind_tag          Nethermind Docker image tag
+            --consensus_tag           Consensus client Docker image tag
+            -b, --branch              Defines Nethermind Git branch
+            "
+            exit 3
+            ;;
         --)
             shift
             break
@@ -75,7 +92,8 @@ while true; do
 done
 
 if [ $consensus_engine = - ]; then
-    echo "Consensus engine is required. Set it with options -c | --consensus"
+    echo "Consensus engine is required. Set it with options -c | --consensus. 
+Use --help for more information."
     exit 4
 fi
 
