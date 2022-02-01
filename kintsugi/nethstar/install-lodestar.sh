@@ -8,7 +8,7 @@ apt install -y npm
 
 # upgrade node
 npm install -g n
-n 15.0.1
+n 16.0.0
 
 # yarn 
 npm install --global yarn
@@ -17,3 +17,6 @@ git clone https://github.com/chainsafe/lodestar.git
 cd lodestar
 yarn install --ignore-optional
 yarn run build
+
+# screen 
+apt install screen
