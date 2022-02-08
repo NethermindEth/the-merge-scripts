@@ -93,4 +93,4 @@ services:
         max-file: "1"
 ' > ~/docker-compose.nethouse.yml
 
-docker-compose -f docker-compose.nethouse.yml up -d 
+docker-compose -f docker-compose.nethouse.yml up -d nethermind lighthouse

@@ -84,4 +84,4 @@ services:
     network_mode: host
 ' > ~/docker-compose.nethbus.yml
 
-docker-compose -f docker-compose.nethbus.yml up -d 
+docker-compose -f docker-compose.nethbus.yml up -d nethermind teku
