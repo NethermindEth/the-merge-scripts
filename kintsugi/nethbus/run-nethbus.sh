@@ -45,7 +45,7 @@ services:
     volumes:
       - ./execution_data:/execution_data
     command: >
-            --config kintsugi --datadir="/execution_data"
+            --config kintsugi --datadir="/execution_data" --JsonRpc.Port=8545
     network_mode: host
 
   nimbus:
@@ -54,8 +54,10 @@ services:
     volumes:
         - ./beacon_data:/consensus_data
         - ~/merge-testnets/kintsugi:/custom_config_data
-    command: >
-         --network=/custom_config_data --web3-url=ws://127.0.0.1:8550 --log-level=DEBUG  --terminal-total-difficulty-override=5000000000 --data-dir=nimbus-beacondata --bootstrap-node=enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
+    command: |
+         --network=/custom_config_data 
+         --web3-url=ws://127.0.0.1:8545 
+         --log-level=DEBUG  --terminal-total-difficulty-override=5000000000 --data-dir=nimbus-beacondata --bootstrap-node=enr:-Iq4QKuNB_wHmWon7hv5HntHiSsyE1a6cUTK1aT7xDSU_hNTLW3R4mowUboCsqYoh1kN9v3ZoSu_WuvW9Aw0tQ0Dxv6GAXxQ7Nv5gmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
     network_mode: host
 ' > ~/docker-compose.nethbus.yml
 
