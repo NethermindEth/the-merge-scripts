@@ -45,7 +45,7 @@ sudo apt-get update; \
 #nethermind and dependencies
 sudo apt-get install -y libsnappy-dev libc6-dev libc6
 
-git clone -b themerge_kintsugi https://github.com/NethermindEth/nethermind --recursive ; \
+git clone https://github.com/NethermindEth/nethermind --recursive ; \
 cd nethermind/src/Nethermind ; \
 dotnet build Nethermind.sln -c Release
 
