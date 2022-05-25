@@ -20,10 +20,10 @@ services:
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
         --Metrics.NodeName=${NETHERMIND_METRICSCONFIG_NODENAME}
-        --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL}
+        --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
         --Seq.MinLevel=${NETHERMIND_SEQCONFIG_MINLEVEL}
         --Seq.ServerUrl=${NETHERMIND_SEQCONFIG_SERVERURL}
-        --Seq.ApiKey=${NETHERMIND_SEQCONFIG_APIKEY}
+        --Seq.ApiKey=${NETHERMIND_SEQCONFIG_APIKEY:-""}
     network_mode: host
 
   lighthouse:
