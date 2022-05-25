@@ -123,19 +123,19 @@ if [ $branch = - ]; then
 fi
 
 ## Change branch flag logic
-cd ~/nethermind/
-current_branch=$(git branch --show-current 2>/dev/null)
-echo "current branch: $current_branch"
-echo "current directory: $(pwd)"
+# cd ~/nethermind/
+# current_branch=$(git branch --show-current 2>/dev/null)
+# echo "current branch: $current_branch"
+# echo "current directory: $(pwd)"
 
-if [ "$current_branch" = "$branch" ]; then
-    echo "Already on $branch branch"
-    git reset --hard origin/$branch
-else
-    echo "Checking out $branch branch"
-    git checkout $branch
-    git reset --hard origin/$branch
-fi
+# if [ "$current_branch" = "$branch" ]; then
+#     echo "Already on $branch branch"
+#     git reset --hard origin/$branch
+# else
+#     echo "Checking out $branch branch"
+#     git checkout $branch
+#     git reset --hard origin/$branch
+# fi
 cd ~/the-merge-scripts/
 
 case $testnet in
