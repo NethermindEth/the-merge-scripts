@@ -10,16 +10,18 @@ version: "3.4"
 services:
 
   nethermind:
-    image: nethermindeth/nethermind:ropsten
-    container_name: nethermind_ropsten
+    image: nethermindeth/nethermind:bopsten
+    container_name: nethermind_bopsten
+    restart: unless-stopped
     volumes:
       - ./execution_data:/execution_data
+      - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
         --config ropsten 
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
-        --Metrics.NodeName=${NETHERMIND_METRICSCONFIG_NODENAME}
+        --Metrics.NodeName="Nethouse Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
         --Seq.MinLevel=${NETHERMIND_SEQCONFIG_MINLEVEL}
         --Seq.ServerUrl=${NETHERMIND_SEQCONFIG_SERVERURL}
@@ -29,8 +31,10 @@ services:
   lighthouse:
     image: sigp/lighthouse:latest-unstable
     container_name: lighthouse_beacon
+    restart: unless-stopped
     volumes:
         - ./beacon_data:/testnet-lh1
+        - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
         lighthouse 
         --spec mainnet 
@@ -53,7 +57,6 @@ services:
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
-NETHERMIND_METRICSCONFIG_NODENAME="Nethku Bopsten Beacon Chain"
 NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL=$PUSH_GATEWAY_URL
 NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io

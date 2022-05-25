@@ -10,16 +10,19 @@ version: "3.4"
 services:
 
   nethermind:
-    image: nethermindeth/nethermind:ropsten
-    container_name: nethermind_ropsten
+    image: nethermindeth/nethermind:bopsten
+    container_name: nethermind_bopsten
+    restart: unless-stopped
     volumes:
       - ./execution_data:/execution_data
+      - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
         --config ropsten 
+        --datadir="/execution_data"
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
-        --Metrics.NodeName=${NETHERMIND_METRICSCONFIG_NODENAME}
+        --Metrics.NodeName="Nethbus Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
         --Seq.MinLevel=${NETHERMIND_SEQCONFIG_MINLEVEL}
         --Seq.ServerUrl=${NETHERMIND_SEQCONFIG_SERVERURL}
@@ -29,14 +32,15 @@ services:
   nimbus:
     image: statusim/nimbus-eth2:multiarch-v22.5.1
     container_name: nimbus_beacon
+    restart: unless-stopped
     volumes:
-        - ./beacon_data:/nimbus-beacondata 
+        - ./beacon_data:/home/user/.cache/nimbus/BeaconNode
+        - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
-         --network=ropsten 
+         --network=ropsten
          --web3-url=http://127.0.0.1:8551 
          --log-level=DEBUG
          --rest 
-         --data-dir=nimbus-beacondata
          --metrics
          --jwt-secret="/tmp/jwtsecret"
     network_mode: host
@@ -44,7 +48,6 @@ services:
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
-NETHERMIND_METRICSCONFIG_NODENAME="Nethku Bopsten Beacon Chain"
 NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL=$PUSH_GATEWAY_URL
 NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
