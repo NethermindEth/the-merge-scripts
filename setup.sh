@@ -24,33 +24,33 @@ apt install -y build-essential
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
 
-#buildx
-mkdir -p ~/.docker/cli-plugins
-FILE=~/.docker/cli-plugins/docker-buildx
-if ! [ -f "$FILE" ]; then
-    wget https://github.com/docker/buildx/releases/download/v0.7.1/buildx-v0.7.1.linux-amd64 -P "$FILE"
-    chmod a+x ~/.docker/cli-plugins/docker-buildx
-fi 
+# #buildx
+# mkdir -p ~/.docker/cli-plugins
+# FILE=~/.docker/cli-plugins/docker-buildx
+# if ! [ -f "$FILE" ]; then
+#     wget https://github.com/docker/buildx/releases/download/v0.7.1/buildx-v0.7.1.linux-amd64 -P "$FILE"
+#     chmod a+x ~/.docker/cli-plugins/docker-buildx
+# fi 
 
 #dotnet
-wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
-sudo dpkg -i packages-microsoft-prod.deb ; \
-rm packages-microsoft-prod.deb
+# wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
+# sudo dpkg -i packages-microsoft-prod.deb ; \
+# rm packages-microsoft-prod.deb
 
-sudo apt-get update; \
-  sudo apt-get install -y apt-transport-https && \
-  sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-6.0
+# sudo apt-get update; \
+#   sudo apt-get install -y apt-transport-https && \
+#   sudo apt-get update && \
+#   sudo apt-get install -y dotnet-sdk-6.0
 
-#nethermind and dependencies
-sudo apt-get install -y libsnappy-dev libc6-dev libc6
+# #nethermind and dependencies
+# sudo apt-get install -y libsnappy-dev libc6-dev libc6
 
-#to fix rocksdb issue in ubuntu 22.04
-ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so > /dev/null 2>&1
+# #to fix rocksdb issue in ubuntu 22.04
+# ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so > /dev/null 2>&1
 
-git clone https://github.com/NethermindEth/nethermind --recursive ; \
-cd nethermind/src/Nethermind ; \
-dotnet build Nethermind.sln -c Release
+# git clone https://github.com/NethermindEth/nethermind --recursive ; \
+# cd nethermind/src/Nethermind ; \
+# dotnet build Nethermind.sln -c Release
 
 #testnet config
-git clone https://github.com/eth-clients/merge-testnets.git
+# git clone https://github.com/eth-clients/merge-testnets.git
