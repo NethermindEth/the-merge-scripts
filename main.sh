@@ -146,6 +146,7 @@ case $testnet in
     bopsten)
         echo "Using bopsten testnet"
         bopsten/bopsten.sh $consensus_engine
+        ;;
     *)
         echo "Unknown testnet: $testnet"
         exit 5
