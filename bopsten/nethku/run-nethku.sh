@@ -17,7 +17,8 @@ services:
       - ./execution_data:/execution_data
       - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
-        --config ropsten 
+        --config ropsten
+        --datadir="/execution_data" 
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}

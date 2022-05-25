@@ -10,6 +10,9 @@ cd ~
 # generate jwt secret
 openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
 
+mkdir ~/beacon_data
+chmod 747 ~/beacon_data
+
 case $consensus_engine in
     nimbus)
         echo "Running nethbus"
