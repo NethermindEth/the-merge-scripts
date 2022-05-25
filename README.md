@@ -4,6 +4,7 @@ Scripts for the setup of Ethereum 2 validators in a ubuntu/debian machine.
 
 Currently there are scripts for the following testnets:
 - [Kintsugi](https://hackmd.io/@n0ble/kintsugi-spec)
+- [Bopsten](https://github.com/ethereum/execution-apis/blob/2d8fe82fcc4e63f82501eb41819cb1a222ad6007/src/engine/authentication.md)
 
 ## Kintsugi testnet
 
@@ -22,7 +23,7 @@ First clone this repository in Home directory. Consider running `find . -type f 
 
 To run a nethermind with a consensus engine on kintsugi you just need to pass the correct args values to `main.sh` script:
 
-```./main.sh --consensus_engine <client> --testnet kintsugi ```
+```./main.sh --consensus_engine <client> --testnet bopsten ```
 
 where `<client>` can be any of the ones listed above (no case sensitive).
 
@@ -81,4 +82,35 @@ bazel run //beacon-chain --
 --terminal-total-difficulty-override 5000000000
 ```
 
-Check [this](https://www.notion.so/nethermind/7e25dc09046b4f2fabac2f2cb5fda52c?v=c64361f9012c401ebe7eb93046ba9347) notion page to check the status of the nodes created and installed for kintsugi.
+## Bopsten testnet
+
+Nethermind client in combination of the following consensus engines (without validators yet):
+- [Lighthouse](https://github.com/sigp/lighthouse)
+- [Lodestar](https://github.com/chainsafe/lodestar)
+- [Nimbus](https://github.com/status-im/nimbus-eth2)
+- [Teku](https://github.com/ConsenSys/teku)
+- [Prysm](https://github.com/prysmaticlabs/prysm)
+
+### How to run
+
+First clone this repository in Home directory. Consider running `find . -type f -name '*.sh' -exec chmod +x {} \;` to make all scripts executables.
+
+> If you do not have nethermind, docker and docker-compose installed, then run `setup.sh` to install them.
+
+To run a nethermind with a consensus engine on bopsten you just need to pass the correct args values to `main.sh` script:
+
+```./main.sh --consensus_engine <client> --testnet bopsten ```
+
+where `<client>` can be any of the ones listed above (no case sensitive).
+
+All of the consensus clients have docker support so the scripts will create a `docker-compose.yml` file to run nethermind with the desired client and run it. You can check the execution logs with:
+
+```docker logs -f docker-compose.<name>.yml --tail=20```
+
+where `<name>` is:
+- nethouse <-> Lighthouse
+- nethstar <-> Lodestar
+- nethbus <-> Nimbus
+- nethku <-> Teku
+- nethysm <-> Prysm
+
