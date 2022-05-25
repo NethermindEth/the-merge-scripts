@@ -33,7 +33,7 @@ if ! [ -f "$FILE" ]; then
 fi 
 
 #dotnet
-wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb; \
 sudo dpkg -i packages-microsoft-prod.deb ; \
 rm packages-microsoft-prod.deb
 
@@ -44,6 +44,9 @@ sudo apt-get update; \
 
 #nethermind and dependencies
 sudo apt-get install -y libsnappy-dev libc6-dev libc6
+
+#to fix rocksdb issue in ubuntu 22.04
+ln -s /usr/lib/x86_64-linux-gnu/libdl.so.2 /usr/lib/x86_64-linux-gnu/libdl.so > /dev/null 2>&1
 
 git clone https://github.com/NethermindEth/nethermind --recursive ; \
 cd nethermind/src/Nethermind ; \
