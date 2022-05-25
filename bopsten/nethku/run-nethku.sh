@@ -42,7 +42,7 @@ services:
         --ee-jwt-secret-file "/tmp/jwtsecret"
         --log-destination console
     network_mode: host
-' > ~/docker-compose.nethbus.yml
+' > ~/docker-compose.nethku.yml
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
@@ -52,4 +52,4 @@ NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
 NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
 ' > ~/.env
 
-docker-compose -f docker-compose.nethbus.yml up -d nethermind teku
+docker-compose -f docker-compose.nethku.yml up -d nethermind teku
