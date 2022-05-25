@@ -73,7 +73,7 @@ while true; do
                                       Choices: lighthouse, lodestar, nimbus, prysm, teku
             Optional:
             -s, --setup               Installs required dependencies for chosen consensus_engine
-            -t, --testnet             Choose which testnet to deploy on. Default: kintsugi
+            -t, --testnet             Choose which testnet to deploy on. Default: bopsten. Supported: kintsugi, bopsten
             --nethermind_tag          Nethermind Docker image tag
             --consensus_tag           Consensus client Docker image tag
             -b, --branch              Defines Nethermind Git branch
@@ -103,12 +103,12 @@ if [ $s = y ]; then
 fi
 
 if [ $testnet = - ]; then
-    testnet="kintsugi"
+    testnet="bopsten"
     echo "No testnet specified, using default: $testnet"
 fi
 
 if [ $nethermind_tag = - ]; then
-    nethermind_tag="nethermind_kintsugi"
+    nethermind_tag="nethermind_bopsten"
     echo "No nethermind tag specified, using default: $nethermind_tag"
 fi
 
@@ -143,6 +143,9 @@ case $testnet in
         echo "Using kintsugi testnet"
         kintsugi/kintsugi.sh $consensus_engine $consensus_tag $nethermind_tag $s
         ;;
+    bopsten)
+        echo "Using bopsten testnet"
+        bopsten/bopsten.sh $consensus_engine
     *)
         echo "Unknown testnet: $testnet"
         exit 5
