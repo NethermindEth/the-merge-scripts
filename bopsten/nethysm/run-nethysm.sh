@@ -30,7 +30,7 @@ services:
     network_mode: host
 
   prysm:
-    image: gcr.io/prysmaticlabs/prysm/beacon-chain:latest,gcr.io/prysmaticlabs/prysm/validator:latest
+    image: gcr.io/prysmaticlabs/prysm/beacon-chain:latest
     container_name: prysm_beacon
     restart: unless-stopped
     volumes:
@@ -38,10 +38,11 @@ services:
         - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
         --ropsten
-        --datadir prysm-beacondata
+        --datadir=/prysm-beacondata
         --http-web3provider=http://localhost:8551
         --bootstrap-node=enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
         --jwt-secret=/tmp/jwtsecret
+        --accept-terms-of-use
     network_mode: host
 ' > ~/docker-compose.nethysm.yml
 

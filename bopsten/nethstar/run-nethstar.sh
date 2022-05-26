@@ -34,7 +34,7 @@ services:
     container_name: lodestar_beacon
     restart: unless-stopped
     volumes:
-        - ./beacon_data:/lodestar-beacondata
+        - ./beacon_data:/usr/lodestar-beacondata
         - /tmp/jwtsecret:/tmp/jwtsecret
     command: |
         beacon 
