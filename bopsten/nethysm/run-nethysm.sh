@@ -21,6 +21,7 @@ services:
         --datadir="/execution_data"
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
+        --Merge.TerminalTotalDifficulty 20000000000000
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
         --Metrics.NodeName="Nethysm Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
@@ -36,6 +37,7 @@ services:
     volumes:
         - ./beacon_data:/prysm-beacondata
         - /tmp/jwtsecret:/tmp/jwtsecret
+        - ~/config.yaml:/config.yaml
     command: |
         --ropsten
         --datadir=/prysm-beacondata
@@ -43,6 +45,7 @@ services:
         --bootstrap-node=enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk
         --jwt-secret=/tmp/jwtsecret
         --accept-terms-of-use
+        --config-file=/config.yaml
     network_mode: host
 ' > ~/docker-compose.nethysm.yml
 
@@ -53,5 +56,9 @@ NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
 NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
 ' > ~/.env
+
+echo '
+TERMINAL_TOTAL_DIFFICULTY: 20000000000000
+' > config.yaml
 
 docker-compose -f docker-compose.nethysm.yml up -d nethermind prysm

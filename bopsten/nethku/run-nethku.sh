@@ -21,6 +21,7 @@ services:
         --datadir="/execution_data" 
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
+        --Merge.TerminalTotalDifficulty 20000000000000
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
         --Metrics.NodeName="Nethku Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
@@ -42,6 +43,7 @@ services:
         --ee-endpoint http://localhost:8551
         --ee-jwt-secret-file "/tmp/jwtsecret"
         --log-destination console
+        --Xnetwork-total-terminal-difficulty-override=20000000000000
     network_mode: host
 ' > ~/docker-compose.nethku.yml
 
