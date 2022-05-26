@@ -3,7 +3,9 @@
 #For bash errors
 set -eo pipefail
 
-cd ~
+directory=$1
+
+cd $directory
 
 echo '
 version: "3.4"
@@ -49,7 +51,7 @@ services:
         --terminal-total-difficulty-override="100000000000000000000000"
         --network.discv5.bootEnrs="enr:-Iq4QMCTfIMXnow27baRUb35Q8iiFHSIDBJh6hQM5Axohhf4b6Kr_cOCu0htQ5WvVqKvFgY28893DHAg8gnBAXsAVqmGAX53x8JggmlkgnY0gmlwhLKAlv6Jc2VjcDI1NmsxoQK6S-Cii_KmfFdUJL2TANL3ksaKUnNXvTCv1tLwXs0QgIN1ZHCCIyk"
     network_mode: host
-' > ~/docker-compose.nethstar.yml
+' > docker-compose.nethstar.yml
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
@@ -57,6 +59,6 @@ NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL=$PUSH_GATEWAY_URL
 NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
 NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
-' > ~/.env
+' > .env
 
 docker-compose -f docker-compose.nethstar.yml up -d nethermind lodestar

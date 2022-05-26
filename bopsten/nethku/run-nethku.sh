@@ -3,7 +3,9 @@
 #For bash errors
 set -eo pipefail
 
-cd ~
+directory=$1
+
+cd $directory
 
 echo '
 version: "3.4"
@@ -45,7 +47,7 @@ services:
         --log-destination console
         --Xnetwork-total-terminal-difficulty-override=100000000000000000000000
     network_mode: host
-' > ~/docker-compose.nethku.yml
+' > docker-compose.nethku.yml
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
@@ -53,6 +55,6 @@ NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL=$PUSH_GATEWAY_URL
 NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
 NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
-' > ~/.env
+' > .env
 
 docker-compose -f docker-compose.nethku.yml up -d nethermind teku

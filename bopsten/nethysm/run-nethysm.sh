@@ -3,7 +3,9 @@
 #For bash errors
 set -eo pipefail
 
-cd ~
+directory=$1
+
+cd $directory
 
 echo '
 version: "3.4"
@@ -47,7 +49,7 @@ services:
         --accept-terms-of-use
         --config-file=/config.yaml
     network_mode: host
-' > ~/docker-compose.nethysm.yml
+' > docker-compose.nethysm.yml
 
 echo '
 NETHERMIND_METRICSCONFIG_ENABLED=true
@@ -55,7 +57,7 @@ NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL=$PUSH_GATEWAY_URL
 NETHERMIND_SEQCONFIG_MINLEVEL=Info
 NETHERMIND_SEQCONFIG_SERVERURL=https://seq.nethermind.io
 NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
-' > ~/.env
+' > .env
 
 echo '
 TERMINAL_TOTAL_DIFFICULTY: 100000000000000000000000

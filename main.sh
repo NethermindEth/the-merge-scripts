@@ -14,8 +14,8 @@ if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     exit 1
 fi
 
-OPTIONS=c:st:b:h
-LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:,branch:,help
+OPTIONS=c:st:b:h:d
+LONGOPTS=consensus_engine:,setup,testnet:,nethermind_tag:,consensus_tag:,directory:,branch:,help
 
 # -regarding ! and PIPESTATUS see above
 # -temporarily store output to be able to check for errors
@@ -63,6 +63,10 @@ while true; do
             branch="$2"
             shift 2
             ;;
+        -d|--directory)
+            branch="$2"
+            shift 2
+            ;;
         -h|--help)
             echo "Usage: ./main.sh [OPTIONS]
             
@@ -77,6 +81,7 @@ while true; do
             --nethermind_tag          Nethermind Docker image tag
             --consensus_tag           Consensus client Docker image tag
             -b, --branch              Defines Nethermind Git branch
+            -d, --directory           Working directory
             "
             exit 3
             ;;
@@ -117,6 +122,11 @@ if [ $consensus_tag = - ]; then
     echo "No consensus tag specified, using default: ${consensus_engine}_beacon"
 fi
 
+if [ $directory = - ]; then
+    directory="~"
+    echo "No working directory specified, using default: ~"
+fi
+
 if [ $branch = - ]; then
     branch="main"
     echo "No branch tag specified, using default: main"
@@ -136,7 +146,7 @@ fi
 #     git checkout $branch
 #     git reset --hard origin/$branch
 # fi
-cd ~/the-merge-scripts/
+cd "${directory}/the-merge-scripts/"
 
 case $testnet in
     kintsugi)
@@ -145,7 +155,7 @@ case $testnet in
         ;;
     bopsten)
         echo "Using bopsten testnet"
-        bopsten/bopsten.sh $consensus_engine
+        bopsten/bopsten.sh $consensus_engine $directory
         ;;
     *)
         echo "Unknown testnet: $testnet"
