@@ -30,7 +30,7 @@ fi
 # read getopt’s output this way to handle the quoting right:
 eval set -- "$PARSED"
 
-nethermind_tag=- consensus_tag=- consensus_engine=- testnet=- branch=-
+nethermind_tag=- consensus_tag=- consensus_engine=- testnet=- branch=- directory=-
 s=n
 # now enjoy the options in order and nicely split until we see --
 while true; do
