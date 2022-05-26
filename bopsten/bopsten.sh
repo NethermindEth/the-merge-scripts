@@ -11,7 +11,7 @@ cd $directory
 # generate jwt secret
 openssl rand -hex 32 | tr -d "\n" > "/tmp/jwtsecret"
 
-mkdir $directory/beacon_data
+mkdir -p $directory/beacon_data
 chmod 747 $directory/beacon_data
 
 case $consensus_engine in
