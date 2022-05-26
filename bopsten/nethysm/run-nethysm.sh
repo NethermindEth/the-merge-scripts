@@ -39,7 +39,7 @@ services:
     volumes:
         - ./beacon_data:/prysm-beacondata
         - /tmp/jwtsecret:/tmp/jwtsecret
-        - ~/config.yaml:/config.yaml
+        - config.yaml:/config.yaml
     command: |
         --ropsten
         --datadir=/prysm-beacondata
