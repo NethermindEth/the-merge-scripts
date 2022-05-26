@@ -21,7 +21,7 @@ services:
         --datadir="/execution_data"
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
-        --Merge.TerminalTotalDifficulty 20000000000000
+        --Merge.TerminalTotalDifficulty 100000000000000000000000
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
         --Metrics.NodeName="Nethysm Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
@@ -58,7 +58,7 @@ NETHERMIND_SEQCONFIG_APIKEY=$SEQ_API_KEY
 ' > ~/.env
 
 echo '
-TERMINAL_TOTAL_DIFFICULTY: 20000000000000
+TERMINAL_TOTAL_DIFFICULTY: 100000000000000000000000
 ' > config.yaml
 
 docker-compose -f docker-compose.nethysm.yml up -d nethermind prysm

@@ -21,7 +21,7 @@ services:
         --datadir="/execution_data"
         --JsonRpc.Host=0.0.0.0 
         --JsonRpc.JwtSecretFile=/tmp/jwtsecret
-        --Merge.TerminalTotalDifficulty 20000000000000
+        --Merge.TerminalTotalDifficulty 100000000000000000000000
         --Metrics.Enabled=${NETHERMIND_METRICSCONFIG_ENABLED}
         --Metrics.NodeName="Nethbus Bopsten Beacon Chain"
         --Metrics.PushGatewayUrl=${NETHERMIND_METRICSCONFIG_PUSHGATEWAYURL:-""}
@@ -44,7 +44,7 @@ services:
          --rest 
          --metrics
          --jwt-secret="/tmp/jwtsecret"
-         --terminal-total-difficulty-override=20000000000000
+         --terminal-total-difficulty-override=100000000000000000000000
     network_mode: host
 ' > ~/docker-compose.nethbus.yml
 
